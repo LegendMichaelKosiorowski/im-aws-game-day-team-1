@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AMH Unicorn Rentals - unicorn registry
+Resources:
+  UnicornDetailsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: DDB_TABLE
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+  UnicornBirthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: UnicornBirthFunction
+      Handler: index.lambda_handler
+      Runtime: python3.9
+      CodeUri: UnicornBirthFunction
+      Environment:
+        Variables:
+          DYNAMODB_TABLE: DDB_TABLE
+      Events:
+        CreateActivities:
+          Type: Api
+          Properties:
+            Path: /unicorn
+            Method: POST
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName: DDB_TABLE
+    Metadata:
+      SamResourceId: UnicornBirthFunction

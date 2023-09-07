@@ -1,0 +1,11 @@
+version = 0.1
+[default.pipeline_bootstrap.parameters]
+pipeline_user = "arn:aws:iam::449374785998:user/aws-sam-cli-managed-unicorn-birth-pip-PipelineUser-ADPDC9FN0ROI"
+permissions_provider = "AWS IAM"
+
+[unicorn-birth.pipeline_bootstrap.parameters]
+pipeline_execution_role = "arn:aws:iam::449374785998:role/aws-sam-cli-managed-unicorn-PipelineExecutionRole-66UUXEVQV1OV"
+cloudformation_execution_role = "arn:aws:iam::449374785998:role/aws-sam-cli-managed-unico-CloudFormationExecutionR-143OTAGV9B7PM"
+artifacts_bucket = "aws-sam-cli-managed-unicorn-birth-artifactsbucket-68nlkp9mzm58"
+image_repository = ""
+region = "eu-west-1"
